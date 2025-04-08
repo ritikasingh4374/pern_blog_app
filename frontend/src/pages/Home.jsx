@@ -1,7 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Blogcard from '../components/Blogcard.jsx'
+import { getBlogs } from '../../api/Api.jsx'
+
 
 export default function Home() {
+
+  const [blogs,setBlogs] = useState(null);
+
+  useEffect(() => {
+      async function fetchData(){
+          const allBlogs = await getBlogs();
+          setBlogs(allBlogs.data);
+      }
+      fetchData();
+  },[]);
+
+
   const data = [
     {
       title : 'title',
@@ -45,10 +59,13 @@ export default function Home() {
     },
   ]
   return (
-    <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
-      {data.map( x => {
-        return <Blogcard blogdata = {x}/>
-      })}
+    <div>
+      <p>{JSON.stringify(blogs)}</p>
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+        {data.map( x => {
+          return <Blogcard blogdata = {x}/>
+        })}
+      </div>
     </div>
   )
 }
