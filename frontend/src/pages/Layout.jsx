@@ -1,48 +1,50 @@
-import React from 'react'
-import { Outlet, Link } from 'react-router-dom'
-import Home from './Home'
+import React from 'react';
+import { Outlet, Link } from 'react-router-dom';
 
-export default function Layout() {
+const Layout = () => {
 
     const menu = [
-        {text : 'Nature', path : '/'},
-        {text : 'Travel', path : '/'},
-        {text : 'Technology', path : '/'},
-        {text : 'Politics', path : '/'},
+        {text:'Nature',path:'/'},
+        {text:'Travel',path:'/'},
+        {text:'Technology',path:'/'},
+        {text:'Politics',path:'/'},
     ]
-  return (
-    <div>
-        {/* {<header></header>} */}
-        <div className="border-b">
-            <div className="container px-5 py-5 flex justify-between">
-                <Link to = '/'></Link>
-                <span className='font-extrabold text-2xl'>BLOGGER</span>
-                <div className="flex">
-                    <ul className='flex'>
-                        { menu.map( x => {
-                            return <li><Link className='p-2' items-center justify-center flex><span>{x.text}</span></Link></li>
-                        })}
-                    </ul>
-                    <button className='bg-slate-500 text-white px-2 py-1 rounded'>
-                       <Link to='/create'> + new post</Link>
-                    </button>
+    return (
+        <div>
+            {/* <Header></Header> */}
+            <div className="border-b">
+                <div className="px-5 py-5 flex justify-between">
+                    <Link to='/'>
+                    <span className='font-extrabold text-2xl'>BLOGGER</span>
+                    </Link>
+                    <div className='flex'>
+                        <ul className='flex'>
+                            {
+                                menu.map((x,i) => {
+                                    return <li key={i}><Link className='p-2 items-center justify-center flex' to={`/?category=${x.text}`}><span>{x.text}</span></Link></li>
+                                })
+                            }
+                        </ul>
+                        <button className='bg-slate-500 text-white px-2 py-1 rounded'>
+                            <Link to='/create'>+ New Post</Link>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-        {/* {<body></body>} */}
-         <div className="flex mx-auto px-5 md:px-20">
-            <div className="mt-5 mb-5 min-h-[500px] w-full">
-            <Outlet></Outlet>
+            {/* <Body></Body> */}
+            <div className="flex mx-auto px-5 md:px-20">
+                <div className="mt-5 mb-5 min-h-[500px] w-full">
+                    <Outlet></Outlet>
+                </div>
             </div>
-         </div>
-        {/* {<footer></footer>} */}
-        <div className="flex bg-slate-800">
-            <div className="flex mx-auto px-20 py-20 items-center justify-center">
-                <h3 className='text-gray-400'>
-                            BLOGGER
-                </h3>
+            {/* <Footer></Footer> */}
+            <div className="flex bg-slate-800">
+                    <div className="flex mx-auto px-20 py-20 items-center justify-center">
+                        <h3 className='text-gray-400'>BLOGGER</h3>
+                    </div>
             </div>
         </div>
-    </div>
-  )
+    );
 }
+
+export default Layout;

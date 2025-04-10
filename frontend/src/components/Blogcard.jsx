@@ -1,19 +1,38 @@
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { IoApps } from "react-icons/io5";
 
-export default function Blogcard(props) {
-    let blogdata = props.blogdata;
-  return (
-    <div className='bg-white shadow-md overflow-hidden rounded-xl'>
-        {/* <Link to = '/blog'> */}
-        <div className="flex flex-col w-full">
-            <img src={blogdata.image} alt="" />
-            <div className="p-2">
-                <h2 className='mt-1 text-xl text-left'>{blogdata.title}</h2>
-                <p className='text-sm text-left opacity-70'>{blogdata.description}</p>
-            </div>
+const Blogcard = ({ blogdata }) => {
+    const apiURL = 'http://localhost:3000/';
+
+    return (
+        <div className='bg-white shadow-md overflow-hidden rounded-xl'>
+            <Link to={`/blog/${blogdata.id}`} className="block">
+                <div className="flex flex-col w-full">
+                    {/* Blog Image */}
+                    <div 
+                        className="w-full h-[250px] bg-no-repeat bg-cover bg-center" 
+                        style={{ backgroundImage: `url(${blogdata.image.startsWith('http') ? blogdata.image : apiURL + blogdata.image.replace(/\\/g, '/')})` }}
+                    >
+                        <img 
+                            src={blogdata.image.startsWith('http') ? blogdata.image : `${apiURL}${blogdata.image.replace(/\\/g, '/')}`} 
+                            alt={blogdata.title} 
+                            className="w-full h-full object-cover rounded-t-xl" 
+                        />
+                    </div>
+
+                    {/* Blog Content */}
+                    <div className='p-4'>
+                        <h5 className='text-lg font-semibold text-gray-800'>{blogdata.title}</h5>
+                        <p className='flex items-center text-gray-600 mt-2'>
+                            <IoApps className="text-gray-500 mr-2" />
+                            <span className='text-sm'>{blogdata.category}</span>
+                        </p>
+                    </div>
+                </div>
+            </Link>
         </div>
-        {/* </Link> */}
-    </div>
-  );
+    );
 }
+
+export default Blogcard;
