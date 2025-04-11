@@ -1,0 +1,15 @@
+# Site settings
+title: My Jekyll Site
+description: "A simple blog built with Jekyll"
+baseurl: ""
+
+# Exclude unnecessary files from being processed
+exclude:
+  - node_modules
+  - vendor
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - .git
+  - .github
+  - .jekyll-cache
