@@ -1,8 +1,11 @@
+// The Blogcard.jsx component is responsible for rendering a single blog post preview. 
+// It displays the blog's title, image, and category, and links to the full post page."
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { IoApps } from "react-icons/io5";
 
 const Blogcard = ({ blogdata }) => {
+    
     const apiURL = 'http://localhost:3000/';
 
     return (

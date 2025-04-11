@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+// The Createblog.jsx component provides a form for users to create a new blog post.
+//  It includes fields for a title, category, image upload, and a text editor for the post content.
+//  The data is then sent to the backend API for storage.import React, { useState } from 'react';
+
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import {uploadFile, createBlog} from '../../api/Api';
